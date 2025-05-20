@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Портфоліо Тараса</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
@@ -13,11 +13,9 @@
       --highlight: #ffffff;
       --card-bg: rgba(255, 255, 255, 0.05);
     }
-
     * {
       box-sizing: border-box;
     }
-
     body {
       font-family: 'Roboto', sans-serif;
       background: var(--bg);
@@ -28,7 +26,6 @@
       scroll-behavior: smooth;
       overflow-x: hidden;
     }
-
     header {
       text-align: center;
       padding: 4rem 1rem 3rem;
@@ -36,7 +33,6 @@
       position: relative;
       overflow: hidden;
     }
-
     header::after {
       content: "";
       position: absolute;
@@ -48,12 +44,10 @@
       animation: pulse 10s infinite;
       z-index: 0;
     }
-
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.2); }
     }
-
     .theme-toggle {
       position: absolute;
       top: 1rem;
@@ -68,40 +62,36 @@
       transition: background 0.3s ease;
       z-index: 2;
     }
-
     h1 {
       font-size: 2.8rem;
       margin-bottom: 1rem;
       position: relative;
       z-index: 1;
     }
-
     p {
       font-size: 1.1rem;
       margin-bottom: 1rem;
     }
-
     section {
       padding: 4rem 2rem;
       max-width: 900px;
       margin: auto;
-      opacity: 0;
-      transform: translateY(60px);
-      transition: all 1.2s ease;
-    }
-
-    section.visible {
       opacity: 1;
       transform: translateY(0);
+      transition: all 1.2s ease;
     }
-
+    section.hidden {
+      opacity: 0;
+      transform: translateY(60px);
+      pointer-events: none;
+      user-select: none;
+    }
     h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
       color: var(--accent);
       position: relative;
     }
-
     .highlight {
       font-weight: bold;
       font-size: 1.2rem;
@@ -111,7 +101,6 @@
       border-left: 4px solid var(--accent);
       margin-top: 1.5rem;
     }
-
     .text-block {
       padding: 1rem;
       margin-top: 0.5rem;
@@ -120,38 +109,31 @@
       backdrop-filter: blur(4px);
       box-shadow: 0 0 20px rgba(0,0,0,0.2);
     }
-
     ul {
       list-style: none;
       padding-left: 0;
     }
-
     ul li::before {
       content: "✓ ";
       color: var(--accent);
     }
-
     ul li {
       margin-bottom: 0.6rem;
     }
-
     footer {
       background: #0e0e0e;
       text-align: center;
       padding: 2rem 1rem;
       color: #999;
     }
-
     a {
       color: var(--accent);
       text-decoration: none;
       transition: color 0.3s ease;
     }
-
     a:hover {
       color: #fff;
     }
-
     .card {
       background: var(--card-bg);
       border-radius: 1rem;
@@ -160,12 +142,38 @@
       box-shadow: 0 4px 30px rgba(0,0,0,0.4);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .card:hover {
       transform: translateY(-8px);
       box-shadow: 0 8px 40px rgba(0,0,0,0.6);
     }
-
+    .loader-wrapper {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: none; /* Прихована спочатку */
+    }
+    .loader {
+      border: 16px solid #f3f3f3;
+      border-top: 16px solid #3498db;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+      margin-bottom: 1rem;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.5rem; }
@@ -174,6 +182,13 @@
   </style>
 </head>
 <body>
+
+  <!-- Плашка завантаження -->
+  <div class="loader-wrapper" id="loader">
+    <div class="loader"></div>
+    В процесі завантаження...
+  </div>
+
   <header>
     <button class="theme-toggle" onclick="toggleTheme()">🌗</button>
     <h1>🔥Привіт, я Тарас</h1>
@@ -207,44 +222,67 @@
     </div>
   </section>
 
-  <section class="card">
+  <section class="card hidden" id="portfolio">
     <h2>🖼️ Моє портфоліо</h2>
-    <div class="highlight">Це не Behance на мільйон переглядів</div>
-    <div class="text-block">
-      <p>Але тут мої роботи, якими я вже можу гордитись.</p>
-      <p>З кожною новою — навички ростуть, стиль стає чіткішим, а впевненість — сильнішою.</p>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>📲 Якщо хочеш зв'язатись</h2>
-    <div class="highlight">Мої двері відкриті для крутих ідей</div>
-    <div class="text-block">
-      <p>Instagram — <a href="https://instagram.com/smk_taras" target="_blank">@smk_taras</a></p>
-      <p>Telegram — <a href="https://t.me/symkovych1" target="_blank">@symkovych1</a></p>
-      <p>Можемо зробити щось круте разом 🙌</p>
+    <div class="highlight">В процесі завантаження...</div>
+    <div class="text-block" id="portfolio-content" style="display:none;">
+      <p>Тут будуть мої найкращі роботи. Поки що працюю над наповненням!</p>
     </div>
   </section>
 
   <footer>
-    <p>© 2025 SMK. Зроблено з любов’ю та трошки магії 💻✨</p>
+    <p>© 2025 Тарас. Всі права захищені.</p>
   </footer>
 
   <script>
-    function toggleTheme() {
-      document.body.classList.toggle("light");
+    const loader = document.getElementById('loader');
+    const portfolioSection = document.getElementById('portfolio');
+    const portfolioContent = document.getElementById('portfolio-content');
+
+    let portfolioLoaded = false;
+
+    function isElementInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top < window.innerHeight && rect.bottom >= 0
+      );
     }
 
-    const sections = document.querySelectorAll('section');
-    const revealOnScroll = () => {
-      sections.forEach(section => {
-        const top = section.getBoundingClientRect().top;
-        const isVisible = top < window.innerHeight - 100;
-        if (isVisible) section.classList.add('visible');
-      });
-    };
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('load', revealOnScroll);
+    function checkPortfolioInView() {
+      if (!portfolioLoaded && isElementInViewport(portfolioSection)) {
+        portfolioLoaded = true;
+        // Показати лоадер
+        loader.style.display = 'flex';
+
+        // Сховати контент секції портфоліо на час завантаження
+        portfolioContent.style.display = 'none';
+        portfolioSection.classList.add('hidden');
+
+        // Через 3 секунди сховати лоадер і показати контент
+        setTimeout(() => {
+          loader.style.display = 'none';
+          portfolioContent.style.display = 'block';
+          portfolioSection.classList.remove('hidden');
+        }, 3000);
+      }
+    }
+
+    window.addEventListener('scroll', checkPortfolioInView);
+
+    // Щоб, якщо сторінка відразу відкривається в середині, перевірити одразу
+    window.addEventListener('load', checkPortfolioInView);
+
+    // Тема: світла/темна (проста)
+    function toggleTheme() {
+      if(document.body.style.background === 'white') {
+        document.body.style.background = '';
+        document.body.style.color = '';
+      } else {
+        document.body.style.background = 'white';
+        document.body.style.color = '#111';
+      }
+    }
   </script>
+
 </body>
 </html>
