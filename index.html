@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Портфоліо Тараса</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      --text: #e0e0e0;
+      --accent: #00e5ff;
+      --highlight: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.7;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1rem 3rem;
+      background: radial-gradient(circle at top, #222 0%, #111 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,229,255,0.15) 0%, transparent 80%);
+      animation: pulse 10s infinite;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.6rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 1.2s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      position: relative;
+    }
+
+    .highlight {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--highlight);
+      background: linear-gradient(90deg, #00e5ff33, transparent);
+      padding: 0.5rem;
+      border-left: 4px solid var(--accent);
+      margin-top: 1.5rem;
+    }
+
+    .text-block {
+      padding: 1rem;
+      margin-top: 0.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li::before {
+      content: "✓ ";
+      color: var(--accent);
+    }
+
+    ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    footer {
+      background: #0e0e0e;
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #999;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.5rem; }
+      section { padding: 2rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button class="theme-toggle" onclick="toggleTheme()">🌗</button>
+    <h1>🔥Привіт, я Тарас</h1>
+    <p>Люблю робити красиве з простого.<br>Canva — мій інструмент, креатив — мій стиль життя.</p>
+    <p>Працюю з кайфом і душею. Не вірю в "і так зійде".</p>
+  </header>
+
+  <section class="card">
+    <h2>💬 Трошки про мене</h2>
+    <div class="highlight">Не скажу, що я гуру дизайну, але точно не новачок.</div>
+    <div class="text-block">
+      <p>Навчився робити банери, логотипи, відео й усе, що може зробити онлайн-простір трошки естетичнішим.</p>
+      <p>Раніше дизайн здавався мені чимось космічним. Але одного дня відкрив Canva — і понеслось.</p>
+      <p>Спробував, втягнувся, почав розбиратись, шукати стиль.</p>
+      <p>Зараз я вчуся щодня — не для диплома, а щоб реально ставати кращим.</p>
+      <p>Мої роботи — це мікс відчуття смаку, практики і бажання зробити щось класне.</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>🎨 Що я вмію</h2>
+    <div class="highlight">Мої навички — це набір перевірених практикою інструментів</div>
+    <div class="text-block">
+      <ul>
+        <li>Банери для Instagram, Telegram, реклами</li>
+        <li>Відео під Reels, TikTok, Stories (до 1 хв)</li>
+        <li>Прості, але стильні логотипи</li>
+        <li>Дизайн презентацій (без нудоти і слайдів на 5 хвилин тексту)</li>
+        <li>Перші спроби сайтів у Canva (так, навіть таке вже пробував)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>🖼️ Моє портфоліо</h2>
+    <div class="highlight">Це не Behance на мільйон переглядів</div>
+    <div class="text-block">
+      <p>Але тут мої роботи, якими я вже можу гордитись.</p>
+      <p>З кожною новою — навички ростуть, стиль стає чіткішим, а впевненість — сильнішою.</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>📲 Якщо хочеш зв'язатись</h2>
+    <div class="highlight">Мої двері відкриті для крутих ідей</div>
+    <div class="text-block">
+      <p>Instagram — <a href="https://instagram.com/smk_taras" target="_blank">@smk_taras</a></p>
+      <p>Telegram — <a href="https://t.me/symkovych1" target="_blank">@symkovych1</a></p>
+      <p>Можемо зробити щось круте разом 🙌</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 SMK. Зроблено з любов’ю та трошки магії 💻✨</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+    }
+
+    const sections = document.querySelectorAll('section');
+    const revealOnScroll = () => {
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        const isVisible = top < window.innerHeight - 100;
+        if (isVisible) section.classList.add('visible');
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+</body>
+</html>
